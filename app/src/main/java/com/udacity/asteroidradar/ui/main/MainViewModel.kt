@@ -9,6 +9,7 @@ import com.udacity.asteroidradar.ui.main.adapter.AsteroidClickListener
 import com.udacity.asteroidradar.ui.main.adapter.AsteroidsAdapter
 import com.udacity.asteroidradar.utils.Constants
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import kotlin.reflect.jvm.internal.impl.load.java.Constant
 
 
@@ -25,7 +26,11 @@ class MainViewModel(application: Application, val asteroidClickListener: Asteroi
      */
     init {
         viewModelScope.launch {
-            asteroidRepo.refreshAsteroids()
+            try {
+                asteroidRepo.refreshAsteroids()
+            }catch (e:HttpException){}
+            catch (e:Exception){}
+
         }
     }
 
