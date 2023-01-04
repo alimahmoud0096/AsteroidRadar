@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListner"
+            type="com.udacity.asteroidradar.ui.main.adapter.AsteroidClickListener" />
+
+        <variable
+            name="asteroid"
+            type="com.udacity.asteroidradar.domain.Asteroid" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="?selectableItemBackground"
+        android:gravity="center_vertical"
+        android:onClick="@{()->clickListner.onClick(asteroid)}"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@{@string/code_name+asteroid.codename}"
+                android:text="@{asteroid.codename}"
+                android:textColor="@color/default_text_color" />
+
+            <TextView
+                android:id="@+id/close_approach_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@{@string/close_approach_data_title+asteroid.closeApproachDate}"
+                android:text="@{asteroid.closeApproachDate}"
+                android:textColor="@color/default_text_color"
+                tools:text="2020-02-01" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            app:bindHazardousImage="@{asteroid.potentiallyHazardous}" />
+
+    </LinearLayout>
+</layout>
